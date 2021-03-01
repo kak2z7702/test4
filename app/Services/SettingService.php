@@ -9,9 +9,6 @@ use Exception;
 class SettingService
 {
 
-    public const GIFT_FUND = 'prize_fund';
-    public const CONVERT_RATE = 'convert_rate';
-
     /**
      * @param  string  $key
      * @return string
