@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\User\UserCreateAction;
 use App\Exceptions\Http\ResponseCantBeCreatedException;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\User\UserRegisterRequest;
 use App\Http\Resources\UserAuthResource;
 use App\Http\Responses\ApiResponse;
+use App\Repositories\UserRepository;
 
 class RegisterController extends Controller
 {
 
     /**
      * @param  UserRegisterRequest  $request
-     * @param  UserCreateAction  $action
+     * @param  UserRepository  $userRepository
      * @return ApiResponse
      * @throws ResponseCantBeCreatedException
      */
     public function register(
         UserRegisterRequest $request,
-        UserCreateAction $action
+        UserRepository $userRepository
     ): ApiResponse {
-        return ApiResponse::success(new UserAuthResource($action->execute($request->dto())));
+        return ApiResponse::success(new UserAuthResource($userRepository->create($request->dto())));
     }
 }

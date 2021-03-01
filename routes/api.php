@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\UserGiftController;
+use App\Http\Controllers\Play\PlayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +22,17 @@ Route::prefix('auth')->group(function () {
     Route::post('login', [LoginController::class, 'login']);
 });
 
-Route::middleware('auth:api')->group(function () {
-    Route::prefix('user-gift')->group(function () {
-        Route::get('/', [UserGiftController::class, 'get']);
-        Route::post('/{userGift}/status', [UserGiftController::class, 'status']);
+
+Route::prefix('plays')->group(function () {
+    Route::get('', [PlayController::class, 'list']);
+
+    Route::middleware('auth:api')->group(function () {
+        Route::post('', [PlayController::class, 'create']);
+        Route::prefix('{id}')->group(function () {
+            Route::delete('', [PlayController::class, 'delete']);
+        });
     });
 });
+
+
+

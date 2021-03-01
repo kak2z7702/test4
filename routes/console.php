@@ -14,13 +14,3 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Artisan::command('payouts {amount}', function ($amount) {
-    $amount = (int) $amount;
-    if (empty($amount)) {
-        echo "Amount field is required".PHP_EOL;
-        return;
-    }
-    dispatch(new \App\Jobs\GiftMoneyManualPayoutJob($amount));
-
-
-})->purpose('Display an inspiring quote');

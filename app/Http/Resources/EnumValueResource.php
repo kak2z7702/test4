@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *
  * @property EnumValue $resource
  */
-class EnumValueResource  extends JsonResource
+class EnumValueResource extends JsonResource
 {
 
     public function toArray($request): array

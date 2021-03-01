@@ -180,6 +180,9 @@ return [
          */
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
+        App\Providers\UserServiceProvider::class,
+        App\Providers\PlayServiceProvider::class,
+
     ],
 
     /*
