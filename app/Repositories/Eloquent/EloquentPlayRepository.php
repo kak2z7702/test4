@@ -7,11 +7,8 @@ use App\Exceptions\Business\EntityNotFoundException;
 use App\Models\Play;
 use App\Repositories\PlayRepository;
 use Belamov\PostgresRange\Ranges\DateRange;
-use Carbon\Carbon;
-use Carbon\CarbonPeriod;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
 
 /**
  * Class EloquentPlayRepository
