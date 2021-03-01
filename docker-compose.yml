@@ -1,0 +1,97 @@
+version: '2.4'
+
+services:
+  nginx:
+    extends:
+      file: .docker/nginx/nginx-compose.yml
+      service: nginx
+    restart: on-failure
+    depends_on:
+      - fpm
+    links:
+      - fpm:php
+    volumes:
+      - .:/app
+    ports:
+      - 8092:80
+
+  fpm:
+    extends:
+      file: .docker/php/php-compose.yml
+      service: php
+    restart: on-failure
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+    environment:
+      - XDEBUG_PORT=9103
+
+  queue:
+    extends:
+      file: .docker/php/php-compose.yml
+      service: php
+    restart: on-failure
+    command: php artisan queue:work --tries=3
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+
+  queue_mail:
+    extends:
+      file: .docker/php/php-compose.yml
+      service: php
+    restart: on-failure
+    command: php artisan queue:work --queue=mail --tries=3
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+
+  composer:
+    extends:
+      file: .docker/php/php-compose.yml
+      service: composer
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+
+  db:
+    extends:
+      file: .docker/postgres/postgres-compose.yml
+      service: postgres
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    ports:
+      - ${POSTGRES_PORT}:5432
+  #ports: #if you want to use db manager instead console
+  # - 5439:5432
+
+  redis:
+    extends:
+      file: .docker/redis/redis-compose.yml
+      service: redis
+    restart: on-failure
+    environment:
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - REDIS_PORT=${REDIS_PORT}
+
+  testdb:
+    extends:
+      file: .docker/postgres/postgres-compose.yml
+      service: test
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
