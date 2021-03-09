@@ -17,6 +17,7 @@ class LogMoveAction
 
     public function execute(Position $position): void
     {
+
         $this->filesystem->append('dron_moves', sprintf(
             '%d,%d',
             $position->xPos,

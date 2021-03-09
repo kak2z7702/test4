@@ -29,9 +29,11 @@ class MoveAction
      */
     public function execute(DronMove $move, Position $position): Position
     {
+
+
         return $this->checkTerritoryAction->execute(new Position([
-            'xPos' => $position->xPos + $move->move(),
-            'yPos' => $position->yPos + $move->move(),
+            'xPos' => $position->xPos + $move->moveX(),
+            'yPos' => $position->yPos + $move->moveY(),
         ]));
     }
 }

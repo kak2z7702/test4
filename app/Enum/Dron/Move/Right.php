@@ -15,9 +15,14 @@ class Right implements DronMove
         return 'right';
     }
 
-    public function move(): int
+    public function moveX(): int
     {
         return 1;
+    }
+
+    public function moveY(): int
+    {
+        return 0;
     }
 
 }

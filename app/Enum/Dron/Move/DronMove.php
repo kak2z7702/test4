@@ -6,5 +6,6 @@ use App\Enum\Base\EnumValue;
 
 interface DronMove extends EnumValue
 {
-    public function move(): int;
+    public function moveX(): int;
+    public function moveY(): int;
 }

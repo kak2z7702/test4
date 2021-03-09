@@ -15,7 +15,12 @@ class Down implements DronMove
         return 'down';
     }
 
-    public function move(): int
+    public function moveX(): int
+    {
+        return 0;
+    }
+
+    public function moveY(): int
     {
         return -1;
     }
