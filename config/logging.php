@@ -99,6 +99,12 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'dron_moves' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/dron_moves.log'),
+        ],
+
     ],
 
 ];

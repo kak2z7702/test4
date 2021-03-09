@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\DTO\Dron\Position;
+use App\Models\Territory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(Territory::class, function (){
+            return new Territory(
+                99,
+                99,
+                0,
+                0
+            );
+        });
+
     }
 
     /**
@@ -23,6 +33,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
     }
 }

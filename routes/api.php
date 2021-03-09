@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Dron\DronController;
 use App\Http\Controllers\Play\PlayController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,14 @@ Route::prefix('plays')->group(function () {
         Route::prefix('{id}')->group(function () {
             Route::delete('', [PlayController::class, 'delete']);
         });
+    });
+});
+
+Route::prefix('dron')->group(function () {
+    Route::middleware('auth:api')->group(function () {
+        Route::post('start', [DronController::class, 'setStart']);
+        Route::post('move', [DronController::class, 'move']);
+        Route::get('position', [DronController::class, 'setPosition']);
     });
 });
 
