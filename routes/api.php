@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Dron\DronController;
 use App\Http\Controllers\Play\PlayController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\my\Test1Controller;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,5 +43,4 @@ Route::prefix('dron')->group(function () {
     });
 });
 
-
-
+Route::post('components', [\App\Http\Controllers\ComponentController::class, 'create']);

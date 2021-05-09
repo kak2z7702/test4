@@ -1,0 +1,30 @@
+<?php
+
+
+namespace App\Http\Controllers;
+
+
+use App\Enum\ComponentEnum;
+use App\Models\Component;
+use Illuminate\Http\Request;
+
+class ComponentController extends Controller
+{
+    public function create(Request $request){
+        $model = new Component();
+        $model->type = ComponentEnum::searchByValue($request->post('type'));
+        $model->save();
+        //TODO Static method
+        $bread = ComponentEnum::bread();
+        $bread2 = new ComponentEnum('bread', 1);
+    }
+    public static function test(){
+        return new ComponentController('qqq');
+    }
+    public static function test1(){
+        return new ComponentController('nenene');
+    }
+}
+
+$ccc = ComponentController::test();
+$ddd = ComponentController::test1();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Actions\User\UserLoginAction;
 use App\Enum\Base\EnumValue;
+use App\Enum\ComponentEnum;
 use App\Enum\Components;
 use App\Exceptions\Business\EntityNotFoundException;
 use App\Exceptions\Business\InvalidLoginOrPassword;
@@ -31,7 +32,6 @@ class LoginController extends Controller
         UserLoginRequest $request,
         UserLoginAction $action
     ): ApiResponse {
-
         return ApiResponse::success(new UserAuthResource($action->execute($request->dto())));
     }
 

@@ -24,3 +24,4 @@ class UserRegisterRequest extends ApiRequest
     }
 
 }
+
