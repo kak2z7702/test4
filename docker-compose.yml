@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/app
     ports:
-      - 8092:80
+      - 8095:80
 
   fpm:
     extends:

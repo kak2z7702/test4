@@ -2,7 +2,6 @@
 
 namespace App\Enum\Base;
 
-
 use App\Exceptions\Business\EnumValueNotFoundException;
 
 abstract class EnumBase implements Enum
